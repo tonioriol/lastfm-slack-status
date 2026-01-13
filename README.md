@@ -1,6 +1,6 @@
 # Last.fm to Slack Status Sync
 
-Display your currently playing Last.fm track as your Slack status in real-time!
+Display your currently playing Last.fm track as your Slack status in real-time.
 
 ## Features
 
@@ -8,11 +8,10 @@ Display your currently playing Last.fm track as your Slack status in real-time!
 - Configurable polling interval
 - Customizable status emoji
 - Optionally clears status when not playing
-- Lightweight with no heavy dependencies
 
 ## Prerequisites
 
-- Node.js 18+ (for native fetch support)
+- Node.js 18+
 - Last.fm account and API key
 - Slack workspace with a custom app
 
@@ -34,38 +33,28 @@ Display your currently playing Last.fm track as your Slack status in real-time!
 6. Click **Install to Workspace** and authorize
 7. Copy the **User OAuth Token** (starts with `xoxp-`)
 
-### 3. Configure the App
+### 3. Configure
 
-1. Copy the example environment file:
-   ```bash
-   cp .env.example .env
-   ```
+```bash
+cp .env.example .env
+```
 
-2. Edit `.env` with your credentials:
-   ```env
-   LASTFM_API_KEY=your_lastfm_api_key
-   LASTFM_USERNAME=your_lastfm_username
-   SLACK_USER_TOKEN=xoxp-your-slack-token
-   ```
+Edit `.env` with your credentials:
 
-### 4. Install Dependencies
+```env
+LASTFM_API_KEY=your_lastfm_api_key
+LASTFM_USERNAME=your_lastfm_username
+SLACK_USER_TOKEN=xoxp-your-slack-token
+```
+
+### 4. Run
 
 ```bash
 npm install
-```
-
-### 5. Run
-
-```bash
 npm start
 ```
 
-Or for development with auto-reload:
-```bash
-npm run dev
-```
-
-## Configuration Options
+## Configuration
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -76,10 +65,3 @@ npm run dev
 | `STATUS_EMOJI` | Slack status emoji | `:musical_note:` |
 | `CLEAR_WHEN_NOT_PLAYING` | Clear status when nothing plays | `true` |
 
-
-
-## License
-
-AGPL-3.0-or-later
-
-See [LICENSE](LICENSE) for the full license text.
