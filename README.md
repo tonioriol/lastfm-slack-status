@@ -1,14 +1,14 @@
-# Last.fm to Slack Status Sync 🎵
+# Last.fm to Slack Status Sync
 
 Display your currently playing Last.fm track as your Slack status in real-time!
 
 ## Features
 
-- 🎧 Automatically updates Slack status with your currently playing track
-- ⏱️ Configurable polling interval
-- 🎨 Customizable status emoji
-- 🧹 Optionally clears status when not playing
-- 🚀 Lightweight with no heavy dependencies
+- Automatically updates Slack status with your currently playing track
+- Configurable polling interval
+- Customizable status emoji
+- Optionally clears status when not playing
+- Lightweight with no heavy dependencies
 
 ## Prerequisites
 
@@ -76,85 +76,10 @@ npm run dev
 | `STATUS_EMOJI` | Slack status emoji | `:musical_note:` |
 | `CLEAR_WHEN_NOT_PLAYING` | Clear status when nothing plays | `true` |
 
-## Running as a Background Service
 
-### macOS (launchd)
-
-Create `~/Library/LaunchAgents/com.lastfm-slack-status.plist`:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.lastfm-slack-status</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/usr/local/bin/node</string>
-        <string>/Users/YOUR_USERNAME/Code/lastfm-slack-status/index.js</string>
-    </array>
-    <key>WorkingDirectory</key>
-    <string>/Users/YOUR_USERNAME/Code/lastfm-slack-status</string>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>KeepAlive</key>
-    <true/>
-    <key>StandardOutPath</key>
-    <string>/tmp/lastfm-slack-status.log</string>
-    <key>StandardErrorPath</key>
-    <string>/tmp/lastfm-slack-status.error.log</string>
-</dict>
-</plist>
-```
-
-Then load it:
-```bash
-launchctl load ~/Library/LaunchAgents/com.lastfm-slack-status.plist
-```
-
-### Linux (systemd)
-
-Create `/etc/systemd/user/lastfm-slack-status.service`:
-
-```ini
-[Unit]
-Description=Last.fm to Slack Status Sync
-After=network.target
-
-[Service]
-Type=simple
-WorkingDirectory=/home/YOUR_USERNAME/Code/lastfm-slack-status
-ExecStart=/usr/bin/node index.js
-Restart=always
-
-[Install]
-WantedBy=default.target
-```
-
-Then enable it:
-```bash
-systemctl --user enable lastfm-slack-status
-systemctl --user start lastfm-slack-status
-```
-
-## Troubleshooting
-
-### "Missing required environment variables"
-Make sure you've created a `.env` file with all required values.
-
-### "Last.fm API error"
-- Verify your API key is correct
-- Check your username exists on Last.fm
-
-### "Slack API error: missing_scope"
-Make sure your Slack app has the `users.profile:write` scope and you're using the **User** token (not Bot token).
-
-### Status not updating
-- Check if you're actually scrobbling to Last.fm
-- Try reducing the poll interval
-- Check the console for any error messages
 
 ## License
 
-MIT
+AGPL-3.0-or-later
+
+See [LICENSE](LICENSE) for the full license text.
